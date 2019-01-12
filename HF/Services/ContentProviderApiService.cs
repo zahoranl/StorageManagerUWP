@@ -22,10 +22,10 @@ namespace HF.Services
 
         public ContentProviderApiService()
         {
-            //TestDataForUser();
-            //TestDataForItemGroup();
-            //SaveAsync();
-            LoadAsync();
+            TestDataForUser();
+            TestDataForItemGroup();
+            SaveAsync();
+            //LoadAsync();
         }
 
         public List<ItemGroup> GetItemGroups()
