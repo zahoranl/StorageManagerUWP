@@ -1,0 +1,186 @@
+﻿<Page x:Class="HF.Views.DetailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:HF.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:HF.ViewModels" 
+      xmlns:converters="using:HF.Converters"
+      x:Name="ThisPage"
+      mc:Ignorable="d"
+      xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+    </Page.Resources>
+        
+    
+    <RelativePanel>
+        <RelativePanel.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/storage.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+        </RelativePanel.Background>
+
+        <controls:PageHeader x:Name="pageHeader" 
+                             Frame="{x:Bind Frame}"
+                             Text="{x:Bind ViewModel.Item.Title}" 
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" >
+            <AppBarButton Label="Pin" Icon="Pin" Click="{x:Bind ViewModel.PinItemSecondaryTile}"
+                          Visibility="{x:Bind ViewModel.IsItemPinned, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter='invert'}"/>
+            <AppBarButton Label="Unpin" Icon="UnPin" Click="{x:Bind ViewModel.UnPinItemSecondaryTile}"
+                          Visibility="{x:Bind ViewModel.IsItemPinned, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+            <AppBarButton Label="Edit" Icon="Edit" Click="{x:Bind ViewModel.EditItem}"/>
+            <AppBarButton Label="Delete" Icon="Delete" Click="{x:Bind ViewModel.DeleteItem}"/>
+            <AppBarButton Label="Delete" Icon="Refresh" Click="{x:Bind ViewModel.RefreshItem}"/>
+        </controls:PageHeader>
+
+        <ScrollViewer Padding="12,8,0,0" RelativePanel.AlignBottomWithPanel="True"
+                      RelativePanel.AlignLeftWithPanel="True"
+                      RelativePanel.AlignRightWithPanel="True"
+                      RelativePanel.Below="pageHeader"
+                      VerticalScrollBarVisibility="Auto">
+
+            <RelativePanel>
+                <StackPanel x:Name="images" 
+                            Orientation="Vertical"
+                            Margin="0,0,24,0">
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="Images"
+                               Margin="0,0,0,12"/>
+                    <FlipView x:Name="flipView"
+                              Width="500"
+                              Height="300"
+                              VerticalAlignment="Top"
+                              ItemsSource="{x:Bind ViewModel.Item.ExtraImages}">
+                        <FlipView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding}" Stretch="Uniform" />
+                            </DataTemplate>
+                        </FlipView.ItemTemplate>
+                    </FlipView>
+                </StackPanel>
+
+                <StackPanel x:Name="data" 
+                            Orientation="Vertical"
+                            RelativePanel.RightOf="images"
+                            Margin="0,0,24,0">
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="Quantity:"
+                               Margin="0,0,0,6"/>
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Item.Quantity, Mode=TwoWay}"
+                               Margin="12,0,0,12"
+                               FontSize="26"/>
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="CriticalQuantity:"
+                               Margin="0,0,0,6"/>
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Item.CriticalQuantity}" 
+                               TextWrapping="Wrap" 
+                               FontSize="26"/>
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="Price:"
+                               Margin="0,0,0,6"/>
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Item.Price}" 
+                               TextWrapping="Wrap" 
+                               FontSize="26"
+                               MaxWidth="400"/>
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="Position:"
+                               Margin="0,0,0,6"/>
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Item.Position}" 
+                               TextWrapping="Wrap"
+                               FontSize="26"
+                               MaxWidth="400"/>
+                    
+                </StackPanel>
+
+               
+
+                <StackPanel x:Name="discription"
+                            Orientation="Vertical"
+                            RelativePanel.Below="images"
+                            Margin="12,0,0,6">
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="Discription:"
+                               Margin="0,0,0,12"/>
+                    <TextBlock Text="{x:Bind ViewModel.Item.Descreption}" 
+                               TextWrapping="WrapWholeWords" 
+                               MaxWidth="400"/>
+                </StackPanel>
+
+                <StackPanel x:Name="sell"
+                            Orientation="Vertical"
+                            RelativePanel.RightOf="data"
+                            Margin="0,0,0,6">
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                               Text="Sell:"
+                               Margin="0,0,0,6"/>
+                    <ComboBox Width="200" 
+                              PlaceholderText="Seller Name"
+                              ItemsSource="{x:Bind ViewModel.userList}"
+                              SelectedItem="{x:Bind ViewModel.selectedComboBoxSeller, Mode=TwoWay}"
+                              />
+                    <TextBox Width="200"
+                             PlaceholderText="Number of sold items"
+                             Margin="0,8,0,0"
+                             Text="{x:Bind ViewModel.numberOfSoldItems, Mode=TwoWay}"/>
+
+                    <Button Content="Sold"
+                            Width="200"
+                            Margin="0,8,0,0"
+                            Click="{x:Bind ViewModel.soldButon_Click}"/>
+
+                    <ListView ItemsSource="{x:Bind ViewModel.Item.ItemHistory, Mode=OneTime}"
+                              SelectionMode="None"
+                              Width="200"
+                              Height="240">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Difference}" 
+                                                    Margin="5,4,5,2"
+                                                    FontSize="19"  
+                                                    FontWeight="Bold"
+                                                    Foreground="DarkBlue" />
+                                    <TextBlock Text="{Binding Seller}" 
+                                                    Margin="5,4,5,2"
+                                                    FontSize="16"
+                                                    Foreground="Gray" 
+                                                    Opacity="1" />
+                                    <TextBlock Text="{Binding TimeStamp}" 
+                                                    Margin="5,4,5,2"
+                                                    FontSize="16"
+                                                    Foreground="Gray"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                </StackPanel>
+
+                <StackPanel x:Name="diag1"
+                                RelativePanel.Below="discription"
+                                Orientation="Horizontal"
+                                Margin="0,40,0,0">
+                    <Charting:Chart x:Name="PieChart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="400">
+                        <Charting:PieSeries ItemsSource="{x:Bind ViewModel.pieChartData}" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True" Title="Eladók megoszlása"/>
+                    </Charting:Chart>
+
+                    <Charting:Chart x:Name="LineChart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="400">
+                        <Charting:LineSeries ItemsSource="{x:Bind ViewModel.lineChartData}" Title="Raktárkészlet" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
+                    </Charting:Chart>
+
+                </StackPanel>
+            </RelativePanel>
+        </ScrollViewer>
+    </RelativePanel>
+</Page>

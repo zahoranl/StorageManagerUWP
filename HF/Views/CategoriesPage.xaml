@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="HF.Views.CategoriesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HF.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:HF.ViewModels"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/storage.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+        </Grid.Background>
+        <StackPanel>
+            <controls:PageHeader Grid.Row="0" Text="Sellers">
+                <AppBarButton Label="Add Category" Icon="Add" Click="{x:Bind ViewModel.AddCategory}"/>
+                
+            </controls:PageHeader>
+            <ListView ItemsSource="{x:Bind ViewModel.ItemGroups}"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,21 @@
+﻿<ContentDialog
+    x:Class="HF.Views.Dialog.AddSellerDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HF.Views.Dialog"
+    xmlns:vm="using:HF.ViewModels.Dialog" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Add New Seller"
+    PrimaryButtonText="Cancel"
+    SecondaryButtonText="Add"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <StackPanel Orientation="Vertical">
+        <TextBlock>Name:</TextBlock>
+        <TextBox x:Name="sellerName"
+                 Text="{x:Bind ViewModel.sellerName}"/>
+    </StackPanel>
+</ContentDialog>
