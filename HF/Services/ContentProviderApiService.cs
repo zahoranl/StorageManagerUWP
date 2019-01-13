@@ -15,7 +15,7 @@ namespace HF.Services
     {
         public List<ItemGroup> itemGroups = new List<ItemGroup>();
         public List<User> userList = new List<User>();
-
+        public User loggedInUser;
       
 
         public object Process { get; private set; }
