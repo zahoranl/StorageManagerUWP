@@ -32,9 +32,14 @@ namespace HF.ViewModels
        
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
+           
             ItemGroups = _contentProviderApiService.GetItemGroups();
             await base.OnNavigatedToAsync(parameter, mode, suspensionState);
+            Services.SettingsServices.SettingsService _settings;
+            _settings = Services.SettingsServices.SettingsService.Instance;
+            _settings.IsFullScreen = false;
         }
+  
         
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {

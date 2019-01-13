@@ -26,7 +26,7 @@ namespace HF.ViewModels.Dialog
         public void SecondaryButtonClick() {
             if (sellerName != null || !sellerName.Equals(""))
             {
-                _contentProviderApiService.AddUser(sellerName);
+                _contentProviderApiService.AddUser(sellerName, sellerName);
             }
         }
     }

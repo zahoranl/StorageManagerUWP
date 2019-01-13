@@ -69,7 +69,7 @@
 
         <Controls:HamburgerMenu.SecondaryButtons>
             <!--  profile button  -->
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:LoginPage">
+            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:LogoutPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"

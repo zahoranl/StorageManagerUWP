@@ -44,11 +44,11 @@ namespace HF.Models
             CriticalQuantity = 10;
             Price = 1200;
             ItemHistory = new List<HistroyPoint>();
-            ItemHistory.Add(new HistroyPoint(DateTime.Now.AddDays(-3), 20, new User("Admin")));
-            ItemHistory.Add(new HistroyPoint(DateTime.Now.AddDays(-2), -2, new User("Zotyika")));
-            ItemHistory.Add(new HistroyPoint(DateTime.Now.AddDays(-1), -2, new User("Zotyika")));
-            ItemHistory.Add(new HistroyPoint(DateTime.Now,-2,new User("Adam")));
-            ItemHistory.Add(new HistroyPoint(DateTime.Now,-2, new User("Zotyika")));
+            ItemHistory.Add(new HistroyPoint(DateTime.Now.AddDays(-3), 20, new User("Admin", "0")));
+            ItemHistory.Add(new HistroyPoint(DateTime.Now.AddDays(-2), -2, new User("Zotyika", "0")));
+            ItemHistory.Add(new HistroyPoint(DateTime.Now.AddDays(-1), -2, new User("Zotyika", "0")));
+            ItemHistory.Add(new HistroyPoint(DateTime.Now,-2,new User("Adam", "0")));
+            ItemHistory.Add(new HistroyPoint(DateTime.Now,-2, new User("Zotyika", "0")));
             
             //ItemHistory.Add(new HistroyPoint(DateTime.Now,-2, new User"Pityu"));
             //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, new User"Adam"));

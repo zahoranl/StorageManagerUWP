@@ -14,9 +14,10 @@ namespace HF.Models
         public string Name { get; set; }
         public string Password { get; set; }
 
-        public User(string name)
+        public User(string name,string pass)
         {
             Name = name;
+            Password = pass;
         }
         public User()
         {

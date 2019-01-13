@@ -55,7 +55,7 @@ namespace HF
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
             // TODO: add your long-running task here
-            await NavigationService.NavigateAsync(typeof(Views.MainPage));
+            await NavigationService.NavigateAsync(typeof(Views.LoginPage));
         }
 
         private IContainer _container;
@@ -65,13 +65,15 @@ namespace HF
             var builder = new ContainerBuilder();
 
             //builder.RegisterType<CookbookApiService>().As<ICookbookApiService>().InstancePerLifetimeScope();
-           // builder.Register(c => RestService.For<ICookbookApiService>("https://bmecookbook.azurewebsites.net/")).InstancePerDependency();
+            // builder.Register(c => RestService.For<ICookbookApiService>("https://bmecookbook.azurewebsites.net/")).InstancePerDependency();
+            builder.RegisterType<LoginPageViewModel>().InstancePerDependency();
             builder.RegisterType<MainPageViewModel>().InstancePerDependency();
             builder.RegisterType<DetailPageViewModel>().InstancePerDependency();
             builder.RegisterType<SellersPageViewModel>().InstancePerDependency();
             builder.RegisterType<StatisticPageViewModel>().InstancePerDependency();
             builder.RegisterType<CategoriesPageViewModel>().InstancePerDependency();
             builder.RegisterType<AddSellerDialog>().InstancePerDependency();
+            builder.RegisterType<LogoutPageViewModel>().InstancePerDependency();
             builder.RegisterType<ContentProviderApiService>().As<IContentProviderApiService>().InstancePerLifetimeScope();
 
 
@@ -100,7 +102,15 @@ namespace HF
             {
                 return _container.Resolve<CategoriesPageViewModel>();
             }
-            else 
+            else if (page is LoginPage)
+            {
+                return _container.Resolve<LoginPageViewModel>();
+            }
+            else if (page is LogoutPage)
+            {
+                return _container.Resolve<LogoutPageViewModel>();
+            }
+            else
             {
                 return base.ResolveForPage(page, navigationService);
             }

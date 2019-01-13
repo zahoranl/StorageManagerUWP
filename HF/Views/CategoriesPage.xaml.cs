@@ -25,6 +25,7 @@ namespace HF.Views
     public sealed partial class CategoriesPage : Page
     {
         public CategoriesPageViewModel ViewModel => (CategoriesPageViewModel)DataContext;
+
         public CategoriesPage()
         {
             this.InitializeComponent();

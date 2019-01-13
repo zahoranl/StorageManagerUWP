@@ -12,10 +12,13 @@ namespace HF.Services
     {
         List<ItemGroup> GetItemGroups();
         List<User> GetUsers();
-        void AddUser(string name);
+        void AddUser(string name, string pass);
         List<ChartData> GetChartDataSellerQunt(Item i);
         Task LoadAsync();
         Task SaveAsync();
         List<ChartData> GetChartDataQuantByDate(Item item);
+        User getAccess(string name, string password);
+        void setAsLoggedIn(User loggedIn);
+        User getLoggedInUser();
     }
 }

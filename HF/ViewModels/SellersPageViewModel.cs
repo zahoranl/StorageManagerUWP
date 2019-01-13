@@ -28,7 +28,7 @@ namespace HF.ViewModels
         }
         public async void AddSellerAsync()
         {
-            userList.Add(new User(""));
+            userList.Add(new User("", "0"));
             AddSellerDialog dialog = new AddSellerDialog(userList.Last());
             ContentDialogResult result = await dialog.ShowAsync();
             

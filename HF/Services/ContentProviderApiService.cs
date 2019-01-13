@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using HF.Models;
-using System.Diagnostics;
 using User = HF.Models.User;
-using Windows.Storage;
 using System.Threading.Tasks;
-using System.ComponentModel;
 
 namespace HF.Services
 {
@@ -16,8 +13,6 @@ namespace HF.Services
         public List<ItemGroup> itemGroups = new List<ItemGroup>();
         public List<User> userList = new List<User>();
         public static User loggedInUser;
-      
-
         public object Process { get; private set; }
 
         public ContentProviderApiService()
@@ -32,14 +27,13 @@ namespace HF.Services
         {
             return itemGroups;
         }
-
         public List<User> GetUsers()
         {
             return userList;
         }
-        public void AddUser(string name)
+        public void AddUser(string name, string pass)
         {
-            userList.Add(new User(name));
+            userList.Add(new User(name, pass));
         }
 
         public List<ChartData> GetChartDataSellerQunt(Item i)
@@ -117,20 +111,19 @@ namespace HF.Services
             return null;
         }
 
-
         private void TestDataForUser()
         {
             //10 Db
-            userList.Add(new User("Laci"));
-            userList.Add(new User("Zoli"));
-            userList.Add(new User("Pityu"));
-            userList.Add(new User("Matyi"));
-            userList.Add(new User("Irén"));
-            userList.Add(new User("Iringó"));
-            userList.Add(new User("Nárcisz"));
-            userList.Add(new User("Edmond"));
-            userList.Add(new User("Szundi"));
-            userList.Add(new User("Merilin"));
+            userList.Add(new User("Laci","a"));
+            userList.Add(new User("Zoli", "a"));
+            userList.Add(new User("Pityu", "a"));
+            userList.Add(new User("Matyi", "a"));
+            userList.Add(new User("Irén", "a"));
+            userList.Add(new User("Iringó", "a"));
+            userList.Add(new User("Nárcisz", "a"));
+            userList.Add(new User("Edmond", "a"));
+            userList.Add(new User("Szundi", "a"));
+            userList.Add(new User("Merilin", "a"));
         }
         private void TestDataForItemGroup()
         {
@@ -150,6 +143,7 @@ namespace HF.Services
             itemList3.Add(new Item("Gitár"));
             itemGroups.Add(new ItemGroup("Hangszer", itemList3));
         }
+
         public async Task SaveAsync()
         {
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
@@ -195,6 +189,27 @@ namespace HF.Services
                 List<ItemGroup> loadedItemGroups = (List<ItemGroup>)itemGroupSerializer.Deserialize(itemGroupStream);
                 itemGroups.AddRange(loadedItemGroups);
             }
+        }
+
+        public User getAccess(string name, string password)
+        {
+            User tmp = null;
+            foreach (var item in userList)
+            {
+                if (item.Name.Equals(name))
+                    if (item.Password.Equals(password))
+                        tmp = item;
+            }
+            return tmp;
+        }
+        public void setAsLoggedIn(User loggedIn)
+        {
+            loggedInUser = loggedIn;
+        }
+
+        public User getLoggedInUser()
+        {
+            return loggedInUser;
         }
     }
 }
