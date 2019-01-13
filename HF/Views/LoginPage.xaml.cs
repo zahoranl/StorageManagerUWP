@@ -25,6 +25,9 @@ namespace HF.Views
         public LoginPage()
         {
             this.InitializeComponent();
+            Services.SettingsServices.SettingsService _settings;
+            _settings = Services.SettingsServices.SettingsService.Instance;
+            _settings.IsFullScreen = true;
         }
     }
 }

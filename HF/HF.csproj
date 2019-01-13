@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\avatar.png" />
+    <Content Include="Assets\avatar_big.png" />
     <Content Include="Assets\car1.jpg" />
     <Content Include="Assets\car2.jpg" />
     <Content Include="Assets\LargeTile.scale-100.png" />
@@ -161,6 +162,8 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\lock.png" />
+    <Content Include="Assets\person.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />

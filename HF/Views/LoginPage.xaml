@@ -7,8 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-    </Grid>
+    <ScrollViewer>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.Background>
+                <ImageBrush ImageSource="ms-appx:///Assets/storage.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+            </Grid.Background>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image       Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="200" Width="200" Margin="0,0,0,0" Source="ms-appx:///Assets/avatar_big.png"/>
+                <Image       Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="40"  Width="40"  Margin="2,6,6,2" Source="ms-appx:///Assets/person.png"/>
+                <Image       Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"    VerticalAlignment="Center" Height="40"  Width="40"  Margin="2,6,6,2" Source="ms-appx:///Assets/lock.png"/>
+                <TextBox     Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" PlaceholderText="Name"     x:Name="tbName" Text="{Binding Name}"/>
+                <PasswordBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" PlaceholderText="Password" x:Name="tbTel"  Password="{Binding Password}"/>
+                <Button      Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Login"/>
+                <Button      Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Login as guest"/>
+                <Button      Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,5,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Help"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>
