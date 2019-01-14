@@ -118,14 +118,7 @@ namespace HF
             {
                 return _container.Resolve<RegistrationPageViewModel>();
             }
-            else if (page is AddEditCategoryDialog)
-            {
-                return _container.Resolve<AddEditCategoryDialogViewModel>();
-            }
-            else if (page is AddEditItemDialog)
-            {
-                return _container.Resolve<AddEditItemDialogViewModel>();
-            }
+            else
             {
                 return base.ResolveForPage(page, navigationService);
             }

@@ -17,10 +17,15 @@ namespace HF.Models
         [XmlArray]
         public List<Item> itemList { get; set; }
         
-        public ItemGroup(string title, List<Item> items)
+        public ItemGroup(string title)
         {
             Title = title;
-            itemList = items;
+            itemList = new List<Item>();
+        }
+        public ItemGroup(string title, List<Item> list)
+        {
+            Title = title;
+            itemList = list;
         }
         public ItemGroup()
         {
