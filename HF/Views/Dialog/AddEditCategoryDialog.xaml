@@ -13,9 +13,8 @@
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 
     <Grid>
-        <TextBox PlaceholderText="Category Name" Text="{x:Bind ViewModel.CategoryTitle, Mode=TwoWay}">
+        <TextBox PlaceholderText="Category Name" Text="{x:Bind ViewModel.CategoryTitle, Mode=TwoWay}"
+                 VerticalAlignment="Center" />
 
-        </TextBox>
-        
     </Grid>
 </ContentDialog>

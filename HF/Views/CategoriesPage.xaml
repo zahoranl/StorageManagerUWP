@@ -10,17 +10,39 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/storage.jpg" Stretch="UniformToFill" Opacity="0.3"/>
-        </Grid.Background>
-        <StackPanel>
-            <controls:PageHeader Grid.Row="0" Text="Sellers">
-                <AppBarButton Label="Add Category" Icon="Add" Click="{x:Bind ViewModel.AddCategoryAsync}"/>
-                <AppBarButton Label="Delete" Icon="Delete" Click="{x:Bind ViewModel.DeleteCategory}"/>
-                <AppBarButton Label="Edit" Icon="Edit" Click="{x:Bind ViewModel.EditCategoryAsync}"/>
-            </controls:PageHeader>
-            <ListView ItemsSource="{x:Bind ViewModel.ItemGroups}"/>
-        </StackPanel>
-    </Grid>
+    <ScrollViewer>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="ms-appx:///Assets/storage.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+            </Grid.Background>
+            <StackPanel>
+                <controls:PageHeader Grid.Row="0" Text="Categories">
+                    <AppBarButton Label="Add Category" Icon="Add" Click="{x:Bind ViewModel.AddCategoryAsync}"/>
+                    <AppBarButton Label="Delete" Icon="Delete">
+                        <AppBarButton.Flyout>
+                            <Flyout x:Name="DeleteFlyout">
+                                <StackPanel>
+                                    <TextBlock Margin="3" Text="Are you sure you want to delete the selected item?" />
+                                    <TextBlock Margin="3" Text="All items in this group will be deleted." />
+                                    <Button Content="Delete selected item group" Click="Delete_Click" />
+                                </StackPanel>
+                            </Flyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                    <AppBarButton Label="Edit" Icon="Edit" Click="{x:Bind ViewModel.EditCategoryAsync}"/>
+                </controls:PageHeader>
+                <ListView ItemsSource="{x:Bind ViewModel.ItemGroups}"
+                          ItemClick="{x:Bind ViewModel.ItemSelectionChanged}"
+                          IsItemClickEnabled="True">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>

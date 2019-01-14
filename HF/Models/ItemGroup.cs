@@ -5,16 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Template10.Mvvm;
 
 namespace HF.Models
 {
     [XmlRootAttribute]
-    public class ItemGroup
+    public class ItemGroup : BindableBase
     {
         [XmlAttribute]
         public string Id { get; set; }
         [XmlAttribute]
-        public string Title { get; set; }
+        private string title;
+        public string Title
+        {
+            get { return title; }
+            set { Set(ref title, value, nameof(Title)); }
+        }
+
         [XmlArray]
         public ObservableCollection<Item> itemList { get; set; }
         
@@ -31,10 +38,6 @@ namespace HF.Models
         public ItemGroup()
         {
 
-        }
-        public override string ToString()
-        {
-            return Title;
         }
     }
 }
