@@ -17,7 +17,11 @@ namespace HF.Views
             
         }
 
-       
+        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewModel.DeleteItem();
+            DeleteFlyout.Hide();
+        }
     }
     public class FinancialStuff
     {

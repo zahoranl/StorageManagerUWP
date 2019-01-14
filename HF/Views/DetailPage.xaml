@@ -36,7 +36,17 @@
             <AppBarButton Label="Unpin" Icon="UnPin" Click="{x:Bind ViewModel.UnPinItemSecondaryTile}"
                           Visibility="{x:Bind ViewModel.IsItemPinned, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
             <AppBarButton Label="Edit" Icon="Edit" Click="{x:Bind ViewModel.EditItemAsync}"/>
-            <AppBarButton Label="Delete" Icon="Delete" Click="{x:Bind ViewModel.DeleteItem}"/>
+            <AppBarButton Label="Delete" Icon="Delete">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="DeleteFlyout">
+                        <StackPanel>
+                            <TextBlock Margin="3" Text="Are you sure you want to delete the selected item?" />
+                            <TextBlock Margin="3" Text="All items in this group will be deleted." />
+                            <Button Content="Delete selected item group" Click="Button_Click" />
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
             <AppBarButton Label="Refresh" Icon="Refresh" Click="{x:Bind ViewModel.RefreshItem}"/>
         </controls:PageHeader>
 
@@ -124,11 +134,6 @@
                     <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                                Text="Sell:"
                                Margin="0,0,0,6"/>
-                    <ComboBox Width="200" 
-                              PlaceholderText="Seller Name"
-                              ItemsSource="{x:Bind ViewModel.userList}"
-                              SelectedItem="{x:Bind ViewModel.selectedComboBoxSeller, Mode=TwoWay}"
-                              />
                     <TextBox Width="200"
                              PlaceholderText="Number of sold items"
                              Margin="0,8,0,0"

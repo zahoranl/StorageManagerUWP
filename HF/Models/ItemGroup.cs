@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,21 +23,26 @@ namespace HF.Models
         }
 
         [XmlArray]
-        public List<Item> itemList { get; set; }
+        public ObservableCollection<Item> itemList { get; set; }
         
         public ItemGroup(string title)
         {
             Title = title;
-            itemList = new List<Item>();
+            itemList = new ObservableCollection<Item>();
         }
         public ItemGroup(string title, List<Item> list)
         {
             Title = title;
-            itemList = list;
+            itemList = new ObservableCollection<Item>(list);
         }
         public ItemGroup()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return Title;
         }
     }
 }

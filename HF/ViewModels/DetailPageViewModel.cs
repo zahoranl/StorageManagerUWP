@@ -1,5 +1,6 @@
 ﻿using HF.Models;
 using HF.Services;
+using HF.ViewModels.Dialog;
 using HF.Views;
 using HF.Views.Dialog;
 using Newtonsoft.Json;
@@ -45,6 +46,7 @@ namespace HF.ViewModels
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             Item = (Item)parameter;
+            Item = _contentProviderApiService.ASzallito;
             pieChartData = _contentProviderApiService.GetChartDataSellerQunt(_item);
             lineChartData = _contentProviderApiService.GetChartDataQuantByDate(_item);
             userList = _contentProviderApiService.GetUsers();
@@ -104,12 +106,30 @@ namespace HF.ViewModels
        
         public async Task EditItemAsync()
         {
-            AddEditItemDialog dialog = new AddEditItemDialog();
+            var adf = _contentProviderApiService.getItemGroupForItem(_item);
+
+            var viewModel = new AddEditItemDialogViewModel();
+            viewModel.editedItem = Item;
+            viewModel.itemGroups = _contentProviderApiService.GetItemGroups();
+            var itemGroup = _contentProviderApiService.getItemGroupForItem(Item);
+            viewModel.selectedItemGroup = itemGroup;
+            AddEditItemDialog dialog = new AddEditItemDialog(viewModel);
             ContentDialogResult result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                itemGroup.itemList.Remove(Item);
+                viewModel.selectedItemGroup.itemList.Add(Item);
+
+                _contentProviderApiService.SaveData();
+            }
         }
         public void DeleteItem()
         {
-
+            var itemGroup = _contentProviderApiService.getItemGroupForItem(Item);
+            itemGroup.itemList.Remove(Item);
+            _contentProviderApiService.DeleteItem(Item);
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
         }
         public void RefreshItem()
         {

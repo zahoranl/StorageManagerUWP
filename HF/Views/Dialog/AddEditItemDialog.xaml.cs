@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HF.ViewModels.Dialog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,9 +20,11 @@ namespace HF.Views.Dialog
 {
     public sealed partial class AddEditItemDialog : ContentDialog
     {
-        public AddEditItemDialog()
+        public AddEditItemDialogViewModel ViewModel { get; set; }
+        public AddEditItemDialog(AddEditItemDialogViewModel viewModel)
         {
             this.InitializeComponent();
+            ViewModel = viewModel;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
