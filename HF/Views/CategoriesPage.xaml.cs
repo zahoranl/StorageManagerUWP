@@ -30,5 +30,11 @@ namespace HF.Views
         {
             this.InitializeComponent();
         }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.DeleteCategory();
+            DeleteFlyout.Hide();
+        }
     }
 }
