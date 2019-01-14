@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,8 @@ namespace HF.ViewModels.Dialog
 {
     public class AddEditItemDialogViewModel: ViewModelBase
     {
+        public List<ItemGroup> itemGroups;
+        public ItemGroup selectedItemGroup;
+        public Item editedItem;
     }
 }

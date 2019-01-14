@@ -10,6 +10,8 @@ namespace HF.Services
 {
     public interface IContentProviderApiService
     {
+        Item ASzallito { get; set; }
+
         //USER
         List<User> GetUsers();
         void AddUser(string name, string pass);
@@ -32,5 +34,6 @@ namespace HF.Services
 
         void LoadData();
         void SaveData();
+        ItemGroup getItemGroupForItem(Item item);
     }
 }

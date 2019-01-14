@@ -14,6 +14,7 @@ namespace HF.Services
         public List<User> userList = new List<User>();
         public static User loggedInUser;
         public object Process { get; private set; }
+        public Item ASzallito { get; set; }
 
         public ContentProviderApiService()
         {
@@ -244,5 +245,18 @@ namespace HF.Services
             return loggedInUser;
         }
 
+        public ItemGroup getItemGroupForItem(Item itemKeresett)
+        {
+            foreach (var itemG in itemGroups)
+            {
+                foreach (var item in itemG.itemList)
+                {
+                    //if (itemKeresett.Title.Equals(item.Title))
+                    if(itemKeresett == item)
+                        return itemG;
+                }
+            }
+            return null;
+        }
     }
 }

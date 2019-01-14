@@ -11,6 +11,8 @@ using Windows.UI.Xaml.Controls;
 using HF.Views;
 using Windows.UI.Xaml.Media.Animation;
 using HF.Views.Dialog;
+using HF.ViewModels.Dialog;
+using System.Collections.ObjectModel;
 
 namespace HF.ViewModels
 {
@@ -19,22 +21,21 @@ namespace HF.ViewModels
 
         private readonly IContentProviderApiService _contentProviderApiService;
 
-        private List<ItemGroup> _itemGroup;
-        public List<ItemGroup> ItemGroups
-        {
-            get { return _itemGroup; }
-            set { Set(ref _itemGroup, value); }
-        }
+        public ObservableCollection<ItemGroup> ItemGroups { get; set; }
 
         public MainPageViewModel(IContentProviderApiService contentProviderApiService)
         {
             _contentProviderApiService = contentProviderApiService;
+            ItemGroups = new ObservableCollection<ItemGroup>();
         }
        
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-           
-            ItemGroups = _contentProviderApiService.GetItemGroups();
+            ItemGroups.Clear();
+            foreach (var item in _contentProviderApiService.GetItemGroups())
+            {
+                ItemGroups.Add(item);
+            }
             await base.OnNavigatedToAsync(parameter, mode, suspensionState);
             Services.SettingsServices.SettingsService _settings;
             _settings = Services.SettingsServices.SettingsService.Instance;
@@ -63,12 +64,27 @@ namespace HF.ViewModels
         public void GotoDetail(object sender, ItemClickEventArgs e)
         {
             var Item = (Item)e.ClickedItem;
+            _contentProviderApiService.ASzallito = Item;
             NavigationService.Navigate(typeof(DetailPage), Item, new SuppressNavigationTransitionInfo());
         }
         public async Task AddItemAsync()
         {
-            AddEditItemDialog dialog = new AddEditItemDialog();
+            var viewModel = new AddEditItemDialogViewModel();
+            viewModel.editedItem = new Item();
+            viewModel.itemGroups = _contentProviderApiService.GetItemGroups();
+            AddEditItemDialog dialog = new AddEditItemDialog(viewModel);
             ContentDialogResult result = await dialog.ShowAsync();
+            
+
+            if (result == ContentDialogResult.Primary)
+            {
+                // mentes
+                var itemGroup = dialog.ViewModel.selectedItemGroup ;
+                itemGroup.itemList.Add(dialog.ViewModel.editedItem);
+                // lista frissites
+                _contentProviderApiService.SaveData();
+            }
+
         }
     }
 }

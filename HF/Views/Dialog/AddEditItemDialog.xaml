@@ -14,31 +14,31 @@
 
     <Grid >
         <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Row="0" Margin="0,5,0,5" PlaceholderText="Item Name" Text=""/>
-            <TextBox Grid.Row="1" Margin="0,5,0,5" PlaceholderText="Price" Text=""/>
-            <TextBox Grid.Row="2" Margin="0,5,0,5" PlaceholderText="Quantity" Text=""/>
-            <TextBox Grid.Row="3" Margin="0,5,0,5" PlaceholderText="Critical Quantity" Text=""/>
-            <TextBox Grid.Row="4" Margin="0,5,0,5" PlaceholderText="Position" Text=""/>
-            <TextBox Grid.Row="5" Margin="0,5,0,5" PlaceholderText="Discription" Text=""/>
-            <Button  Grid.Row="6" Margin="0,5,0,5" HorizontalAlignment="Stretch" Content="Choose Picture" />
-          
-          
-          
-          
-           
-        </Grid>
-
+        <TextBox Grid.Row="0" Margin="0,5,0,5" PlaceholderText="Item Name" Text="{x:Bind ViewModel.editedItem.Title, Mode=TwoWay}"/>
+        <TextBox Grid.Row="1" Margin="0,5,0,5" PlaceholderText="Price" Text="{x:Bind ViewModel.editedItem.Price, Mode=TwoWay}"/>
+        <TextBox Grid.Row="2" Margin="0,5,0,5" PlaceholderText="Quantity" Text="{x:Bind ViewModel.editedItem.Quantity, Mode=TwoWay}"/>
+        <TextBox Grid.Row="3" Margin="0,5,0,5" PlaceholderText="Critical Quantity" Text="{x:Bind ViewModel.editedItem.CriticalQuantity, Mode=TwoWay}"/>
+        <TextBox Grid.Row="4" Margin="0,5,0,5" PlaceholderText="Position" Text="{x:Bind ViewModel.editedItem.Position, Mode=TwoWay}"/>
+        <TextBox Grid.Row="5" Margin="0,5,0,5" PlaceholderText="Discription" Text="{x:Bind ViewModel.editedItem.Descreption, Mode=TwoWay}"/>
+        <ComboBox Grid.Row="6"
+                      Margin="0,5,0,5"
+                      HorizontalAlignment="Stretch"
+                      PlaceholderText="Item Group"
+                      ItemsSource="{x:Bind ViewModel.itemGroups}"
+                      SelectedItem="{x:Bind ViewModel.selectedItemGroup, Mode=TwoWay}"/>
+        <Button  Grid.Row="7" Margin="0,5,0,5" HorizontalAlignment="Stretch" Content="Choose Picture" />
+    </Grid>
 </ContentDialog>

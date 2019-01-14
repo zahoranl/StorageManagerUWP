@@ -67,6 +67,17 @@ namespace HF.Models
         }
         public Item()
         {
+            Title = "";
+            Image = "ms-appx:///Assets/avatar.png";
+            Position = "";
+            Descreption = "";
+            Quantity = 0;
+            CriticalQuantity = 0;
+            Price = 0;
+            ItemHistory = new List<HistroyPoint>();
+            ExtraImages = new List<string>();
+            ExtraImages.Add("ms-appx:///Assets/car1.jpg");
+            ExtraImages.Add("ms-appx:///Assets/car2.jpg");
         }
     }
 }
