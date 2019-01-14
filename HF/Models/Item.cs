@@ -4,35 +4,72 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Template10.Mvvm;
 
 namespace HF.Models
 {
     [XmlRootAttribute]
-    public class Item
+    public class Item : BindableBase
     {
         [XmlAttribute]
         public int Id { get; set; }
+
         [XmlAttribute]
-        public string Title { get; set; }
+        private string title;
+        public string Title
+        {
+            get { return title; }
+            set { Set(ref title, value, nameof(Title)); }
+        }
+
         [XmlAttribute]
-        public string Position { get; set; }
+        private string position;
+        public string Position
+        {
+            get { return position; }
+            set { Set(ref position, value, nameof(Position)); }
+        }
+
         [XmlAttribute]
-        public string Descreption { get; set; }
+        private string description;
+        public string Descreption
+        {
+            get { return description; }
+            set { Set(ref description, value, nameof(Descreption)); }
+        }
+
         [XmlAttribute]
-        public int Quantity { get; set; }
+        private int quantity;
+        public int Quantity
+        {
+            get { return quantity; }
+            set { Set(ref quantity, value, nameof(Quantity)); }
+        }
+
         [XmlAttribute]
-        public int CriticalQuantity { get; set; }
+        private int criticalQuantity;
+        public int CriticalQuantity
+        {
+            get { return criticalQuantity; }
+            set { Set(ref criticalQuantity, value, nameof(CriticalQuantity)); }
+        }
+
         [XmlAttribute]
-        public int Price { get; set; }
+        private int price;
+        public int Price
+        {
+            get { return price; }
+            set { Set(ref price, value, nameof(Price)); }
+        }
+
         [XmlArray]
         public List<string> ExtraImages { get; set; }
+
         [XmlAttribute]
         public string Image { get; set; }
+
         [XmlArray]
-        public List<HistroyPoint> ItemHistory
-        {
-            get;set;
-        }
+        public List<HistroyPoint> ItemHistory { get; set; }
 
 
         public Item(string name){

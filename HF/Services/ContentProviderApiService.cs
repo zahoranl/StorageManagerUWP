@@ -18,10 +18,10 @@ namespace HF.Services
 
         public ContentProviderApiService()
         {
-            TestDataForUser();
-            TestDataForItemGroup();
-            SaveData();
-            //LoadData();
+            //TestDataForUser();
+            //TestDataForItemGroup();
+            //SaveData();
+            LoadData();
         }
 
         public List<ItemGroup> GetItemGroups()
@@ -251,7 +251,6 @@ namespace HF.Services
             {
                 foreach (var item in itemG.itemList)
                 {
-                    //if (itemKeresett.Title.Equals(item.Title))
                     if(itemKeresett == item)
                         return itemG;
                 }
