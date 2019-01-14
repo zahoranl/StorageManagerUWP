@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Template10.Mvvm;
 
 namespace HF.Models
 {
     [XmlRootAttribute]
-    public class HistroyPoint: INotifyPropertyChanged
+    public class HistroyPoint: BindableBase
     {
         [XmlAttribute]
         public DateTime TimeStamp { get; set; }
@@ -28,7 +29,5 @@ namespace HF.Models
         {
 
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

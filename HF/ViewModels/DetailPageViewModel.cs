@@ -6,6 +6,7 @@ using HF.Views.Dialog;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,12 @@ namespace HF.ViewModels
     public class DetailPageViewModel : ViewModelBase
     {
         private readonly IContentProviderApiService _contentProviderApiService;
-        public List<FinancialStuff> financialStuffList = new List<FinancialStuff>();
-        public List<ChartData> pieChartData { get; set; }
-        public List<ChartData> lineChartData { get; set; }
+
+        public ObservableCollection<ChartData> pieChartData { get; set; }
+        public ObservableCollection<ChartData> lineChartData { get; set; }
+        public ObservableCollection<HistroyPoint> history { get; set; } 
         public string numberOfSoldItems { get; set; }
         public int numberOfSells { get; set; }
-        public User selectedComboBoxSeller { get; set; }
         public List<User> userList { get; set; }
         private Item _item;
 
@@ -47,11 +48,10 @@ namespace HF.ViewModels
         {
             Item = (Item)parameter;
             Item = _contentProviderApiService.ASzallito;
-            pieChartData = _contentProviderApiService.GetChartDataSellerQunt(_item);
-            lineChartData = _contentProviderApiService.GetChartDataQuantByDate(_item);
+            pieChartData = new ObservableCollection<ChartData>(_contentProviderApiService.GetChartDataSellerQunt(_item));
+            lineChartData =new ObservableCollection<ChartData>(_contentProviderApiService.GetChartDataQuantByDate(_item));
             userList = _contentProviderApiService.GetUsers();
-            if (userList.Count!=0)
-                selectedComboBoxSeller = userList[0];
+            history = new ObservableCollection<HistroyPoint>(Item.ItemHistory);
            
             
         }
@@ -63,21 +63,11 @@ namespace HF.ViewModels
       
         public void soldButon_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            //try
-            //{
-            //    if (numberOfSoldItems != null|| !numberOfSoldItems.Equals("")) { 
-            //    numberOfSells = Int32.Parse(numberOfSoldItems);
-            //    Item.ItemHistory.Add(new HistroyPoint(DateTime.Now, -numberOfSells, selectedComboBoxSeller));
-            //    Item.Quantity -= numberOfSells;
-            //    numberOfSoldItems = "0";
-            //    if (userList.Count != 0)
-            //        selectedComboBoxSeller = userList[0];
-            //}
-            //}
-            //catch (Exception c)
-            //{
-            //    numberOfSoldItems = "0";
-            //}
+            history.Add(new HistroyPoint(DateTime.Now, -int.Parse(numberOfSoldItems), _contentProviderApiService.getLoggedInUser()));
+            Item.ItemHistory.Add(new HistroyPoint(DateTime.Now, -int.Parse(numberOfSoldItems), _contentProviderApiService.getLoggedInUser()));
+            _contentProviderApiService.SaveData();
+            pieChartData = new ObservableCollection<ChartData>(_contentProviderApiService.GetChartDataSellerQunt(_item));
+            lineChartData = new ObservableCollection<ChartData>(_contentProviderApiService.GetChartDataQuantByDate(_item));
         }
 
         public bool IsItemPinned => SecondaryTile.Exists(Item.Id.ToString());

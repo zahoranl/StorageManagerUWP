@@ -143,7 +143,7 @@
                             Margin="0,8,0,0"
                             Click="{x:Bind ViewModel.soldButon_Click}"/>
 
-                    <ListView ItemsSource="{x:Bind ViewModel.Item.ItemHistory, Mode=OneTime}"
+                    <ListView ItemsSource="{x:Bind ViewModel.history}"
                               SelectionMode="None"
                               Width="200"
                               Height="240">
@@ -180,7 +180,7 @@
                     </Charting:Chart>
 
                     <Charting:Chart x:Name="LineChart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="400">
-                        <Charting:LineSeries ItemsSource="{x:Bind ViewModel.lineChartData}" Title="Raktárkészlet" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
+                        <Charting:LineSeries ItemsSource="{x:Bind ViewModel.lineChartData, Mode=TwoWay}" Title="Raktárkészlet" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
                     </Charting:Chart>
 
                 </StackPanel>

@@ -23,9 +23,4 @@ namespace HF.Views
             DeleteFlyout.Hide();
         }
     }
-    public class FinancialStuff
-    {
-        public string Name { get; set; }
-        public int Amount { get; set; }
-    }
 }

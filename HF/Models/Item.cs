@@ -86,17 +86,6 @@ namespace HF.Models
             ItemHistory.Add(new HistroyPoint(DateTime.Now.AddDays(-1), -2, new User("Zotyika", "0")));
             ItemHistory.Add(new HistroyPoint(DateTime.Now,-2,new User("Adam", "0")));
             ItemHistory.Add(new HistroyPoint(DateTime.Now,-2, new User("Zotyika", "0")));
-            
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now,-2, new User"Pityu"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, new User"Adam"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, "Zotyika"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, "Pityu"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, "Adam"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, "Zotyika"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, "Pityu"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, "Adam"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, "Zotyika"));
-            //ItemHistory.Add(new HistroyPoint(DateTime.Now, -2, "Pityu"));
            
             ExtraImages = new List<string>();
             ExtraImages.Add("ms-appx:///Assets/car1.jpg");
