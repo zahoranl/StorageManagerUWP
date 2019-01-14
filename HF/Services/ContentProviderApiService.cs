@@ -35,6 +35,10 @@ namespace HF.Services
         {
             userList.Add(new User(name, pass));
         }
+        public void AddUser(User user)
+        {
+            userList.Add(user);
+        }
 
         public List<ChartData> GetChartDataSellerQunt(Item i)
         {

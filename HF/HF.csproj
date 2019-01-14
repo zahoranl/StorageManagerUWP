@@ -107,12 +107,14 @@
     <Compile Include="Services\IContentProviderApiService.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
     <Compile Include="ViewModels\CategoriesPageViewModel.cs" />
+    <Compile Include="ViewModels\Dialog\AddEditCategoryDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialog\AddEditItemDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialog\AddSellerDialogViewModel.cs" />
-    <Compile Include="ViewModels\LoginPageViewModel.cs" />
-    <Compile Include="ViewModels\LogoutPageViewModel.cs" />
+    <Compile Include="ViewModels\Login\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\Login\LogoutPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
-    <Compile Include="ViewModels\RegistrationPageViewModel.cs" />
+    <Compile Include="ViewModels\Login\RegistrationPageViewModel.cs" />
     <Compile Include="ViewModels\SellersPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\StatisticPageViewModel.cs" />
@@ -125,19 +127,25 @@
     <Compile Include="Views\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Dialog\AddEditCategoryDialog.xaml.cs">
+      <DependentUpon>AddEditCategoryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialog\AddEditItemDialog.xaml.cs">
+      <DependentUpon>AddEditItemDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dialog\AddSellerDialog.xaml.cs">
       <DependentUpon>AddSellerDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginPage.xaml.cs">
+    <Compile Include="Views\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LogoutPage.xaml.cs">
+    <Compile Include="Views\Login\LogoutPage.xaml.cs">
       <DependentUpon>LogoutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RegistrationPage.xaml.cs">
+    <Compile Include="Views\Login\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SellersPage.xaml.cs">
@@ -241,15 +249,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Dialog\AddEditCategoryDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialog\AddEditItemDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dialog\AddSellerDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LoginPage.xaml">
+    <Page Include="Views\Login\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LogoutPage.xaml">
+    <Page Include="Views\Login\LogoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,7 +273,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\RegistrationPage.xaml">
+    <Page Include="Views\Login\RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

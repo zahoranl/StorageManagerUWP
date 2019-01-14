@@ -74,6 +74,7 @@ namespace HF
             builder.RegisterType<CategoriesPageViewModel>().InstancePerDependency();
             builder.RegisterType<AddSellerDialog>().InstancePerDependency();
             builder.RegisterType<LogoutPageViewModel>().InstancePerDependency();
+            builder.RegisterType<RegistrationPageViewModel>().InstancePerDependency();
             builder.RegisterType<ContentProviderApiService>().As<IContentProviderApiService>().InstancePerLifetimeScope();
 
 
@@ -109,6 +110,10 @@ namespace HF
             else if (page is LogoutPage)
             {
                 return _container.Resolve<LogoutPageViewModel>();
+            }
+            else if (page is RegistrationPage)
+            {
+                return _container.Resolve<RegistrationPageViewModel>();
             }
             else
             {

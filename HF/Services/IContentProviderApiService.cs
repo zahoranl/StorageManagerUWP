@@ -13,6 +13,7 @@ namespace HF.Services
         List<ItemGroup> GetItemGroups();
         List<User> GetUsers();
         void AddUser(string name, string pass);
+        void AddUser(User user);
         List<ChartData> GetChartDataSellerQunt(Item i);
         Task LoadAsync();
         Task SaveAsync();

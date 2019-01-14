@@ -28,6 +28,13 @@ namespace HF.ViewModels
         {
 
         }
-        
+        public void DeleteCategory()
+        {
+
+        }
+        public void EditCategory()
+        {
+
+        }
     }
 }

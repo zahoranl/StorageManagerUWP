@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 
 namespace HF.ViewModels
@@ -26,14 +28,7 @@ namespace HF.ViewModels
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             userLoggedIn = _contentProviderApiService.getLoggedInUser();
-            if (userLoggedIn == null)
-                Message = "Regisztráció";
-            else
-            {
-                Message = "Edit user: " + userLoggedIn.Name;
-                Name = userLoggedIn.Name;
-            }
-            await OnNavigatedToAsync(parameter, mode, suspensionState);
+           // await OnNavigatedToAsync(parameter, mode, suspensionState);
         }
 
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
@@ -47,19 +42,28 @@ namespace HF.ViewModels
             if (NavigationService.CanGoBack)
                 NavigationService.GoBack();
         }
-        public void Reg()
+        public void Reg(object sender)
         {
-
             User newUser;
-            if ((Password == Password2) && !Name.Equals(""))
-                if (userLoggedIn == null) { 
-                    newUser = new User(Name, Password);
-                }else
+            if ((Password == Password2) && !Name.Equals("") && !Password.Equals(""))
+            {
+                if (userLoggedIn == null)
                 {
-                    userLoggedIn.Name = Name;
-                    userLoggedIn.Password = Password;
+                    newUser = new User(Name, Password);
+                    userLoggedIn = newUser;
+                    _contentProviderApiService.AddUser(newUser);
                 }
-            NavigationService.Navigate(typeof(Views.LogoutPage), 2);
+                else
+                {
+                    userLoggedIn = _contentProviderApiService.getAccess(Name, Password);
+                }
+                NavigationService.Navigate(typeof(Views.LogoutPage), 2);
+            }
+            else
+            {
+                FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            }
+            
         }
     }
 }

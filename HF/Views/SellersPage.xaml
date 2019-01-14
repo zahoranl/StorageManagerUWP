@@ -14,15 +14,9 @@
             <ImageBrush ImageSource="ms-appx:///Assets/storage.jpg" Stretch="UniformToFill" Opacity="0.3"/>
         </Grid.Background>
         <StackPanel>
-
-
-
             <controls:PageHeader Grid.Row="0" Text="Sellers">
-                <AppBarButton Label="Add Seller" Icon="Add" Click="{x:Bind ViewModel.AddSellerAsync}"/>
             </controls:PageHeader>
-         
-            
-        <ListView ItemsSource="{x:Bind ViewModel.userList}"/>
+            <ListView ItemsSource="{x:Bind ViewModel.userList}"/>
         </StackPanel>
     </Grid>
 </Page>

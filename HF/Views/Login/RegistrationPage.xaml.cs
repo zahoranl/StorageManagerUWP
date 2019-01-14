@@ -29,5 +29,10 @@ namespace HF.Views
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Reg(sender);
+        }
     }
 }
