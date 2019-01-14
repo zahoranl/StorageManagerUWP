@@ -17,10 +17,10 @@ namespace HF.Services
 
         public ContentProviderApiService()
         {
-            TestDataForUser();
-            TestDataForItemGroup();
-            SaveAsync();
-            //LoadAsync();
+            //TestDataForUser();
+            //TestDataForItemGroup();
+            //SaveData();
+            LoadData();
         }
 
         public List<ItemGroup> GetItemGroups()
@@ -31,6 +31,7 @@ namespace HF.Services
         {
             return userList;
         }
+
         public void AddUser(string name, string pass)
         {
             userList.Add(new User(name, pass));
@@ -38,6 +39,14 @@ namespace HF.Services
         public void AddUser(User user)
         {
             userList.Add(user);
+        }
+
+
+        public void AddItemGroup(ItemGroup itemGroup)
+        {
+            itemGroups.Add(itemGroup);
+
+            SaveData();
         }
 
         public List<ChartData> GetChartDataSellerQunt(Item i)
@@ -148,51 +157,58 @@ namespace HF.Services
             itemGroups.Add(new ItemGroup("Hangszer", itemList3));
         }
 
-        public async Task SaveAsync()
+        public void SaveData()
         {
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-
-            Windows.Storage.StorageFile userListFile = await storageFolder.CreateFileAsync("users.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-            Windows.Storage.StorageFile itemGroupFile = await storageFolder.CreateFileAsync("itemGroup.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-
-            var userSerializer = new XmlSerializer(typeof(List<User>));
-            var itemGroupSerializer = new XmlSerializer(typeof(List<ItemGroup>));
-
-            Stream userStream = await userListFile.OpenStreamForWriteAsync();
-            Stream itemGroupStream = await itemGroupFile.OpenStreamForWriteAsync();
-
-            using (userStream)
+            Task.Factory.StartNew(async () =>
             {
-                userSerializer.Serialize(userStream, userList);
-            }
-            using (itemGroupStream)
-            {
-                itemGroupSerializer.Serialize(itemGroupStream, itemGroups);
-            }
+                Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+                Windows.Storage.StorageFile userListFile = await storageFolder.CreateFileAsync("users.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+                Windows.Storage.StorageFile itemGroupFile = await storageFolder.CreateFileAsync("itemGroup.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+
+                var userSerializer = new XmlSerializer(typeof(List<User>));
+                var itemGroupSerializer = new XmlSerializer(typeof(List<ItemGroup>));
+
+                Stream userStream = await userListFile.OpenStreamForWriteAsync();
+                Stream itemGroupStream = await itemGroupFile.OpenStreamForWriteAsync();
+
+                using (userStream)
+                {
+                    userSerializer.Serialize(userStream, userList);
+                }
+                using (itemGroupStream)
+                {
+                    itemGroupSerializer.Serialize(itemGroupStream, itemGroups);
+                }
+
+            });
 
         }
-        public async Task LoadAsync()
+        public void LoadData()
         {
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-
-            Windows.Storage.StorageFile userListFile = await storageFolder.GetFileAsync("users.txt");
-            Windows.Storage.StorageFile itemGroupFile = await storageFolder.GetFileAsync("itemGroup.txt");
-
-            var userSerializer = new XmlSerializer(typeof(List<User>));
-            var itemGroupSerializer = new XmlSerializer(typeof(List<ItemGroup>));
-
-            Stream userStream = await userListFile.OpenStreamForWriteAsync();
-            Stream itemGroupStream = await itemGroupFile.OpenStreamForWriteAsync();
-            using (userStream)
+            Task.Factory.StartNew(async () =>
             {
-                List<User> loadedUsers = (List<User>)userSerializer.Deserialize(userStream);
-                userList.AddRange(loadedUsers);
-            }
-            using (itemGroupStream)
-            {
-                List<ItemGroup> loadedItemGroups = (List<ItemGroup>)itemGroupSerializer.Deserialize(itemGroupStream);
-                itemGroups.AddRange(loadedItemGroups);
-            }
+                Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+                Windows.Storage.StorageFile userListFile = await storageFolder.GetFileAsync("users.txt");
+                Windows.Storage.StorageFile itemGroupFile = await storageFolder.GetFileAsync("itemGroup.txt");
+
+                var userSerializer = new XmlSerializer(typeof(List<User>));
+                var itemGroupSerializer = new XmlSerializer(typeof(List<ItemGroup>));
+
+                Stream userStream = await userListFile.OpenStreamForWriteAsync();
+                Stream itemGroupStream = await itemGroupFile.OpenStreamForWriteAsync();
+                using (userStream)
+                {
+                    List<User> loadedUsers = (List<User>)userSerializer.Deserialize(userStream);
+                    userList.AddRange(loadedUsers);
+                }
+                using (itemGroupStream)
+                {
+                    List<ItemGroup> loadedItemGroups = (List<ItemGroup>)itemGroupSerializer.Deserialize(itemGroupStream);
+                    itemGroups.AddRange(loadedItemGroups);
+                }
+            });
         }
 
         public User getAccess(string name, string password)

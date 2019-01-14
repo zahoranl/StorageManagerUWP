@@ -7,7 +7,8 @@ using Template10.Mvvm;
 
 namespace HF.ViewModels.Dialog
 {
-    class AddEditCategoryDialogViewModel: ViewModelBase
+    public class AddEditCategoryDialogViewModel: ViewModelBase
     {
+        public string CategoryTitle { get; set; }
     }
 }

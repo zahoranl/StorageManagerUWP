@@ -7,7 +7,7 @@ using Template10.Mvvm;
 
 namespace HF.ViewModels.Dialog
 {
-    class AddEditItemDialogViewModel: ViewModelBase
+    public class AddEditItemDialogViewModel: ViewModelBase
     {
     }
 }
