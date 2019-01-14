@@ -10,20 +10,27 @@ namespace HF.Services
 {
     public interface IContentProviderApiService
     {
-        List<ItemGroup> GetItemGroups();
+        //USER
         List<User> GetUsers();
         void AddUser(string name, string pass);
         void AddUser(User user);
-
-        void AddItemGroup(ItemGroup itemGroup);
-
-
-        List<ChartData> GetChartDataSellerQunt(Item i);
-        void LoadData();
-        void SaveData();
-        List<ChartData> GetChartDataQuantByDate(Item item);
         User getAccess(string name, string password);
         void setAsLoggedIn(User loggedIn);
         User getLoggedInUser();
+
+        //ITEM
+        void DeleteItem(Item itemToDelete);
+
+        //ITEMGROUP
+        void AddItemGroup(ItemGroup itemGroup);
+        List<ItemGroup> GetItemGroups();
+        void DeleteItemGroup(ItemGroup itemGroupToDelete);
+
+        //CHART
+        List<ChartData> GetChartDataSellerQunt(Item i);
+        List<ChartData> GetChartDataQuantByDate(Item item);
+
+        void LoadData();
+        void SaveData();
     }
 }

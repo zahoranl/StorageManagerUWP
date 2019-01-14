@@ -41,11 +41,24 @@ namespace HF.Services
             userList.Add(user);
         }
 
-
         public void AddItemGroup(ItemGroup itemGroup)
         {
             itemGroups.Add(itemGroup);
 
+            SaveData();
+        }
+
+        public void DeleteItemGroup(ItemGroup itemGroupToDelete)
+        {
+            itemGroups.Remove(itemGroupToDelete);
+            SaveData();
+        }
+        public void DeleteItem(Item itemToDelete)
+        {
+            foreach (var item in itemGroups)
+            {
+                item.itemList.Remove(itemToDelete);
+            }
             SaveData();
         }
 
@@ -226,10 +239,10 @@ namespace HF.Services
         {
             loggedInUser = loggedIn;
         }
-
         public User getLoggedInUser()
         {
             return loggedInUser;
         }
+
     }
 }
