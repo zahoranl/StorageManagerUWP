@@ -18,10 +18,10 @@ namespace HF.Services
 
         public ContentProviderApiService()
         {
-            //TestDataForUser();
-            //TestDataForItemGroup();
-            //SaveData();
-            LoadData();
+            TestDataForUser();
+            TestDataForItemGroup();
+            SaveData();
+            //LoadData();
         }
 
         public List<ItemGroup> GetItemGroups()

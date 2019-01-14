@@ -39,5 +39,10 @@ namespace HF.Models
         {
 
         }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

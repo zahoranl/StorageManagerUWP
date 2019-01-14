@@ -125,9 +125,11 @@ namespace HF.ViewModels
         }
         public void DeleteItem()
         {
+            var itemGroup = _contentProviderApiService.getItemGroupForItem(Item);
             itemGroup.itemList.Remove(Item);
-            viewModel.selectedItemGroup.itemList.Add(Item);
-            _contentProviderApiService.SaveData();
+            _contentProviderApiService.DeleteItem(Item);
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
         }
         public void RefreshItem()
         {
