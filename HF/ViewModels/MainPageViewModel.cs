@@ -10,6 +10,7 @@ using HF.Services;
 using Windows.UI.Xaml.Controls;
 using HF.Views;
 using Windows.UI.Xaml.Media.Animation;
+using HF.Views.Dialog;
 
 namespace HF.ViewModels
 {
@@ -64,9 +65,10 @@ namespace HF.ViewModels
             var Item = (Item)e.ClickedItem;
             NavigationService.Navigate(typeof(DetailPage), Item, new SuppressNavigationTransitionInfo());
         }
-        public void AddItem()
+        public async Task AddItemAsync()
         {
-
+            AddEditItemDialog dialog = new AddEditItemDialog();
+            ContentDialogResult result = await dialog.ShowAsync();
         }
     }
 }

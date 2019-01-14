@@ -35,7 +35,7 @@
                           Visibility="{x:Bind ViewModel.IsItemPinned, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter='invert'}"/>
             <AppBarButton Label="Unpin" Icon="UnPin" Click="{x:Bind ViewModel.UnPinItemSecondaryTile}"
                           Visibility="{x:Bind ViewModel.IsItemPinned, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-            <AppBarButton Label="Edit" Icon="Edit" Click="{x:Bind ViewModel.EditItem}"/>
+            <AppBarButton Label="Edit" Icon="Edit" Click="{x:Bind ViewModel.EditItemAsync}"/>
             <AppBarButton Label="Delete" Icon="Delete" Click="{x:Bind ViewModel.DeleteItem}"/>
             <AppBarButton Label="Refresh" Icon="Refresh" Click="{x:Bind ViewModel.RefreshItem}"/>
         </controls:PageHeader>

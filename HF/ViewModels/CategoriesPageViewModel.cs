@@ -1,11 +1,13 @@
 ﻿using HF.Models;
 using HF.Services;
+using HF.Views.Dialog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
+using Windows.UI.Xaml.Controls;
 
 namespace HF.ViewModels
 {
@@ -24,17 +26,19 @@ namespace HF.ViewModels
             ItemGroups = _contentProviderApiService.GetItemGroups();
 
         }
-        public void AddCategory()
+        public async Task AddCategoryAsync()
         {
-
+            AddEditCategoryDialog dialog = new AddEditCategoryDialog();
+            ContentDialogResult result = await dialog.ShowAsync();
         }
         public void DeleteCategory()
         {
-
+           
         }
-        public void EditCategory()
+        public async Task EditCategoryAsync()
         {
-
+            AddEditCategoryDialog dialog = new AddEditCategoryDialog();
+            ContentDialogResult result = await dialog.ShowAsync();
         }
     }
 }

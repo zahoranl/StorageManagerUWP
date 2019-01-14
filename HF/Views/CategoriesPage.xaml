@@ -16,9 +16,9 @@
         </Grid.Background>
         <StackPanel>
             <controls:PageHeader Grid.Row="0" Text="Sellers">
-                <AppBarButton Label="Add Category" Icon="Add" Click="{x:Bind ViewModel.AddCategory}"/>
+                <AppBarButton Label="Add Category" Icon="Add" Click="{x:Bind ViewModel.AddCategoryAsync}"/>
                 <AppBarButton Label="Delete" Icon="Delete" Click="{x:Bind ViewModel.DeleteCategory}"/>
-                <AppBarButton Label="Edit" Icon="Edit" Click="{x:Bind ViewModel.EditCategory}"/>
+                <AppBarButton Label="Edit" Icon="Edit" Click="{x:Bind ViewModel.EditCategoryAsync}"/>
             </controls:PageHeader>
             <ListView ItemsSource="{x:Bind ViewModel.ItemGroups}"/>
         </StackPanel>

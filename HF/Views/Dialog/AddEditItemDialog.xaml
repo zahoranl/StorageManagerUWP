@@ -6,12 +6,39 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="TITLE"
-    PrimaryButtonText="Button1"
-    SecondaryButtonText="Button2"
+    Title="Add/Edit Item"
+    PrimaryButtonText="OK"
+    SecondaryButtonText="Cancel"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 
-    <Grid>
-    </Grid>
+    <Grid >
+        <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Row="0" Margin="0,5,0,5" PlaceholderText="Item Name" Text=""/>
+            <TextBox Grid.Row="1" Margin="0,5,0,5" PlaceholderText="Price" Text=""/>
+            <TextBox Grid.Row="2" Margin="0,5,0,5" PlaceholderText="Quantity" Text=""/>
+            <TextBox Grid.Row="3" Margin="0,5,0,5" PlaceholderText="Critical Quantity" Text=""/>
+            <TextBox Grid.Row="4" Margin="0,5,0,5" PlaceholderText="Position" Text=""/>
+            <TextBox Grid.Row="5" Margin="0,5,0,5" PlaceholderText="Discription" Text=""/>
+            <Button  Grid.Row="6" Margin="0,5,0,5" HorizontalAlignment="Stretch" Content="Choose Picture" />
+          
+          
+          
+          
+           
+        </Grid>
+
 </ContentDialog>

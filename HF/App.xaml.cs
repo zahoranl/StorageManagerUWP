@@ -14,6 +14,7 @@ using Template10.Services.NavigationService;
 using HF.Views;
 using HF.ViewModels;
 using HF.Views.Dialog;
+using HF.ViewModels.Dialog;
 
 namespace HF
 {
@@ -73,6 +74,8 @@ namespace HF
             builder.RegisterType<StatisticPageViewModel>().InstancePerDependency();
             builder.RegisterType<CategoriesPageViewModel>().InstancePerDependency();
             builder.RegisterType<AddSellerDialog>().InstancePerDependency();
+            builder.RegisterType<AddEditItemDialog>().InstancePerDependency();
+            builder.RegisterType<AddEditCategoryDialog>().InstancePerDependency();
             builder.RegisterType<LogoutPageViewModel>().InstancePerDependency();
             builder.RegisterType<RegistrationPageViewModel>().InstancePerDependency();
             builder.RegisterType<ContentProviderApiService>().As<IContentProviderApiService>().InstancePerLifetimeScope();
@@ -115,7 +118,14 @@ namespace HF
             {
                 return _container.Resolve<RegistrationPageViewModel>();
             }
-            else
+            else if (page is AddEditCategoryDialog)
+            {
+                return _container.Resolve<AddEditCategoryDialogViewModel>();
+            }
+            else if (page is AddEditItemDialog)
+            {
+                return _container.Resolve<AddEditItemDialogViewModel>();
+            }
             {
                 return base.ResolveForPage(page, navigationService);
             }

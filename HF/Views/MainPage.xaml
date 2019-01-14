@@ -28,7 +28,7 @@
                 <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
             </controls:PageHeader.SecondaryCommands>
-            <AppBarButton Label="Add" Icon="Add" Click="{x:Bind ViewModel.AddItem}"/>
+            <AppBarButton Label="Add" Icon="Add" Click="{x:Bind ViewModel.AddItemAsync}"/>
         </controls:PageHeader>
 
         <GridView Grid.Row="1" 

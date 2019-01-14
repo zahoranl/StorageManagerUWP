@@ -1,6 +1,7 @@
 ﻿using HF.Models;
 using HF.Services;
 using HF.Views;
+using HF.Views.Dialog;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -101,9 +102,10 @@ namespace HF.ViewModels
             }
         }
        
-        public void EditItem()
+        public async Task EditItemAsync()
         {
-
+            AddEditItemDialog dialog = new AddEditItemDialog();
+            ContentDialogResult result = await dialog.ShowAsync();
         }
         public void DeleteItem()
         {
