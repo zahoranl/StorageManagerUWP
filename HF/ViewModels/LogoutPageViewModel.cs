@@ -1,9 +1,6 @@
 ﻿using HF.Models;
 using HF.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
@@ -24,6 +21,7 @@ namespace HF.ViewModels
         public string Name { get; set; }
         public string Password { get; set; }
         public string Message { get; set; }
+        
 
         public LogoutPageViewModel(IContentProviderApiService contentProviderApiService)
         {
@@ -72,7 +70,7 @@ namespace HF.ViewModels
 
         public void Edit()
         {
-
+            NavigationService.Navigate(typeof(Views.RegistrationPage), 5);
         }
     }
 }

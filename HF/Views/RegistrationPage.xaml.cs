@@ -21,24 +21,13 @@ namespace HF.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LoginPage : Page
+    public sealed partial class RegistrationPage : Page
     {
-        public LoginPageViewModel ViewModel => (LoginPageViewModel)DataContext;
+        public RegistrationPageViewModel ViewModel => (RegistrationPageViewModel)DataContext;
 
-        public LoginPage()
+        public RegistrationPage()
         {
             this.InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            
-            ViewModel.Login(sender);
         }
     }
 }

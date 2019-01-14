@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -40,7 +42,6 @@ namespace HF.ViewModels
             Services.SettingsServices.SettingsService _settings;
             _settings = Services.SettingsServices.SettingsService.Instance;
             _settings.IsFullScreen = true;
-            Message = "asdf";
         }
   
         public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
@@ -49,32 +50,34 @@ namespace HF.ViewModels
             await Task.CompletedTask;
         }
 
-        public void Login(){
+        public void Login(object sender)
+        {
             User loggedIn =_contentProviderApiService.getAccess(Name, Password);
             if (loggedIn == null)
             {
-                Message = "Access Denied \n Wrong User name or Password!";
+                FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
             }
             else
             {
                 _contentProviderApiService.setAsLoggedIn(loggedIn);
                 NavigationService.Navigate(typeof(Views.LogoutPage), 2);
             }
+            
         }
 
         public void LoginAsGuest()
         {
             _contentProviderApiService.setAsLoggedIn(new User("Guest", ""));
-            NavigationService.Navigate(typeof(Views.MainPage), 2);
+            NavigationService.Navigate(typeof(Views.LogoutPage), 2);
         }
-        public void Help()
+        public void Help(object sender)
         {
-
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
 
         public void Reg()
         {
-
+            NavigationService.Navigate(typeof(Views.RegistrationPage), 5);
         }
     }
 }
