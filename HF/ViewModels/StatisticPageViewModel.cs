@@ -25,7 +25,6 @@ namespace HF.ViewModels
             diagramData = contentProviderApiService.GetChartDataAll();
             diagramData2 = contentProviderApiService.GetChartDataAll2();
         }
-
         private void LoadChartContents()
         {
             Random rand = new Random();
@@ -39,7 +38,6 @@ namespace HF.ViewModels
             diagramData3.Add(new ChartData() { Name = "H", Sum = rand.Next(0, 200) });
 
         }
-
         public void ButtonRefresh_Click()
         {
             LoadChartContents();

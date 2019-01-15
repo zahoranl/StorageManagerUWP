@@ -59,7 +59,6 @@ namespace HF.ViewModels
                 _contentProviderApiService.SaveData();
             }
         }
-
         public void ItemSelectionChanged(object sender, ItemClickEventArgs e)
         {
             selectedItemGroup = (ItemGroup)e.ClickedItem;

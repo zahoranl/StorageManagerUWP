@@ -61,9 +61,7 @@ namespace HF.ViewModels
 
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {
-        }
-
-      
+        } 
         public void soldButon_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             int negativ = -int.Parse(numberOfSoldItems);
@@ -135,7 +133,6 @@ namespace HF.ViewModels
         {
           
         }
-       
         public async void UnPinItemSecondaryTile()
         {
             var tile = new SecondaryTile(Item.Id.ToString());
@@ -145,7 +142,6 @@ namespace HF.ViewModels
                 RaisePropertyChanged(nameof(IsItemPinned));
             }
         }
-        
         private void dropNotification()
         {
             ToastTemplateType toastTemplate = ToastTemplateType.ToastImageAndText02;

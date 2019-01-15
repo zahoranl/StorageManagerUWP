@@ -22,7 +22,6 @@ namespace HF.Services
             get => _languages;
             set { _languages = value;}
         }
-
         public ContentProviderApiService()
         {
             //TestDataForUser();
@@ -36,7 +35,6 @@ namespace HF.Services
                 new Language { DisplayName = "Hungarian", LanguageCode = "hu-HU" }
             };
         }
-
         public List<ItemGroup> GetItemGroups()
         {
             return itemGroups;
@@ -45,7 +43,6 @@ namespace HF.Services
         {
             return userList;
         }
-
         public void AddUser(string name, string pass)
         {
             userList.Add(new User(name, pass));
@@ -54,14 +51,12 @@ namespace HF.Services
         {
             userList.Add(user);
         }
-
         public void AddItemGroup(ItemGroup itemGroup)
         {
             itemGroups.Add(itemGroup);
 
             SaveData();
         }
-
         public void DeleteItemGroup(ItemGroup itemGroupToDelete)
         {
             itemGroups.Remove(itemGroupToDelete);
@@ -75,7 +70,6 @@ namespace HF.Services
             }
             SaveData();
         }
-
         public List<ChartData> GetChartDataSellerQunt(Item i)
         {
             var rtnList = new List<ChartData>();
@@ -150,7 +144,6 @@ namespace HF.Services
             }
             return null;
         }
-
         private void TestDataForUser()
         {
             //10 Db
@@ -183,7 +176,6 @@ namespace HF.Services
             itemList3.Add(new Item("Gitár"));
             itemGroups.Add(new ItemGroup("Hangszer", itemList3));
         }
-
         public void SaveData()
         {
             Task.Factory.StartNew(async () =>
@@ -237,7 +229,6 @@ namespace HF.Services
                 }
             });
         }
-
         public User getAccess(string name, string password)
         {
             User tmp = null;
@@ -257,7 +248,6 @@ namespace HF.Services
         {
             return loggedInUser;
         }
-
         public ItemGroup getItemGroupForItem(Item itemKeresett)
         {
             foreach (var itemG in itemGroups)
@@ -270,7 +260,6 @@ namespace HF.Services
             }
             return null;
         }
-
         public List<ChartData> GetChartDataAll()
         {
             List<ChartData> tmp =  new List<ChartData>();
@@ -285,7 +274,6 @@ namespace HF.Services
             }
             return tmp;
         }
-
         public List<ChartData> GetChartDataAll2()
         {
             List<ChartData> tmp = new List<ChartData>();
