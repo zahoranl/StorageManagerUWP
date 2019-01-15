@@ -41,7 +41,7 @@
                     <Flyout x:Name="DeleteFlyout">
                         <StackPanel>
                             <TextBlock Margin="3" Text="Are you sure you want to delete this item?" />
-                            <Button Content="Delete selected item group" Click="Button_Click" />
+                            <Button Content="Delete selected item" Click="Button_Click" />
                         </StackPanel>
                     </Flyout>
                 </AppBarButton.Flyout>

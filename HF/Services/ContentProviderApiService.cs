@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using HF.Models;
 using User = HF.Models.User;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace HF.Services
 {
@@ -15,13 +16,25 @@ namespace HF.Services
         public static User loggedInUser;
         public object Process { get; private set; }
         public Item ASzallito { get; set; }
+        private ObservableCollection<Language> _languages;
+        public ObservableCollection<Language> Languages
+        {
+            get => _languages;
+            set { _languages = value;}
+        }
 
         public ContentProviderApiService()
         {
-            TestDataForUser();
-            TestDataForItemGroup();
-            SaveData();
-           // LoadData();
+            //TestDataForUser();
+            //TestDataForItemGroup();
+            //SaveData();
+            LoadData();
+
+            Languages = new ObservableCollection<Language>
+            {
+                new Language { DisplayName = "English", LanguageCode = "en-US" },
+                new Language { DisplayName = "Hungarian", LanguageCode = "hu-HU" }
+            };
         }
 
         public List<ItemGroup> GetItemGroups()
@@ -256,6 +269,33 @@ namespace HF.Services
                 }
             }
             return null;
+        }
+
+        public List<ChartData> GetChartDataAll()
+        {
+            List<ChartData> tmp =  new List<ChartData>();
+            foreach (var itemG in itemGroups)
+            {
+                var newData=new ChartData(itemG.Title, 0);
+                foreach (var item in itemG.itemList)
+                {
+                    newData.Sum += item.Quantity;
+                }
+                tmp.Add(newData);
+            }
+            return tmp;
+        }
+
+        public List<ChartData> GetChartDataAll2()
+        {
+            List<ChartData> tmp = new List<ChartData>();
+            Random rand = new Random();
+            foreach (var user in userList)
+            {
+                tmp.Add(new ChartData(user.Name,rand.Next(0, 30)));
+            }
+
+            return tmp;
         }
     }
 }

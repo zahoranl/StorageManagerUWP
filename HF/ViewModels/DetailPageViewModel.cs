@@ -17,6 +17,9 @@ using Windows.UI.StartScreen;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
+using Windows.UI.Notifications;
+using Microsoft.Toolkit.Uwp.Notifications;
+using Windows.Data.Xml.Dom;
 
 namespace HF.ViewModels
 {
@@ -63,11 +66,18 @@ namespace HF.ViewModels
       
         public void soldButon_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            history.Add(new HistroyPoint(DateTime.Now, -int.Parse(numberOfSoldItems), _contentProviderApiService.getLoggedInUser()));
+            int negativ = -int.Parse(numberOfSoldItems);
+            history.Add(new HistroyPoint(DateTime.Now, negativ, _contentProviderApiService.getLoggedInUser()));
             Item.ItemHistory.Add(new HistroyPoint(DateTime.Now, -int.Parse(numberOfSoldItems), _contentProviderApiService.getLoggedInUser()));
             _contentProviderApiService.SaveData();
             pieChartData = new ObservableCollection<ChartData>(_contentProviderApiService.GetChartDataSellerQunt(_item));
             lineChartData = new ObservableCollection<ChartData>(_contentProviderApiService.GetChartDataQuantByDate(_item));
+
+            Item.Quantity += negativ;
+            if (Item.Quantity < Item.CriticalQuantity)
+            {
+                dropNotification();
+            }
         }
 
         public bool IsItemPinned => SecondaryTile.Exists(Item.Id.ToString());
@@ -136,5 +146,19 @@ namespace HF.ViewModels
             }
         }
         
+        private void dropNotification()
+        {
+            ToastTemplateType toastTemplate = ToastTemplateType.ToastImageAndText02;
+            XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
+            XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
+            toastTextElements[0].AppendChild(toastXml.CreateTextNode(Item.Title));
+            toastTextElements[1].AppendChild(toastXml.CreateTextNode("Level below critical: "+ Item.Quantity));
+            XmlNodeList toastImageElements = toastXml.GetElementsByTagName("image");
+            IXmlNode toasNode = toastXml.SelectSingleNode("/toast");
+            ((XmlElement)toasNode).SetAttribute("duration", "long");
+
+            ToastNotification toast = new ToastNotification(toastXml);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
     }
 }

@@ -27,7 +27,6 @@ namespace HF.Models
         }
         public HistroyPoint()
         {
-
         }
     }
 }

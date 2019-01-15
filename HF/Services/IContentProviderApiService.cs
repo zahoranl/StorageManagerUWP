@@ -26,11 +26,16 @@ namespace HF.Services
         //ITEMGROUP
         void AddItemGroup(ItemGroup itemGroup);
         List<ItemGroup> GetItemGroups();
+        List<ChartData> GetChartDataAll();
         void DeleteItemGroup(ItemGroup itemGroupToDelete);
 
         //CHART
         List<ChartData> GetChartDataSellerQunt(Item i);
+        List<ChartData> GetChartDataAll2();
         List<ChartData> GetChartDataQuantByDate(Item item);
+
+        //Lang
+
 
         void LoadData();
         void SaveData();

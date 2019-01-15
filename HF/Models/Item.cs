@@ -13,7 +13,6 @@ namespace HF.Models
     {
         [XmlAttribute]
         public int Id { get; set; }
-
         [XmlAttribute]
         private string title;
         public string Title
@@ -21,7 +20,6 @@ namespace HF.Models
             get { return title; }
             set { Set(ref title, value, nameof(Title)); }
         }
-
         [XmlAttribute]
         private string position;
         public string Position
@@ -29,7 +27,6 @@ namespace HF.Models
             get { return position; }
             set { Set(ref position, value, nameof(Position)); }
         }
-
         [XmlAttribute]
         private string description;
         public string Descreption
@@ -37,7 +34,6 @@ namespace HF.Models
             get { return description; }
             set { Set(ref description, value, nameof(Descreption)); }
         }
-
         [XmlAttribute]
         private int quantity;
         public int Quantity
@@ -45,7 +41,6 @@ namespace HF.Models
             get { return quantity; }
             set { Set(ref quantity, value, nameof(Quantity)); }
         }
-
         [XmlAttribute]
         private int criticalQuantity;
         public int CriticalQuantity
@@ -53,7 +48,6 @@ namespace HF.Models
             get { return criticalQuantity; }
             set { Set(ref criticalQuantity, value, nameof(CriticalQuantity)); }
         }
-
         [XmlAttribute]
         private int price;
         public int Price
@@ -61,7 +55,6 @@ namespace HF.Models
             get { return price; }
             set { Set(ref price, value, nameof(Price)); }
         }
-
         [XmlArray]
         public List<string> ExtraImages { get; set; }
 

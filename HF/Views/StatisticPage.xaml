@@ -24,7 +24,7 @@
                         <Charting:PieSeries ItemsSource="{x:Bind ViewModel.diagramData}" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
                     </Charting:Chart>
                     <Border Background="#629FED" Height="60" VerticalAlignment="Bottom">
-                        <TextBlock Text="Ez lesz az 1. diagram címe!" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Termékek darab száma kategóriánként" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
                     </Border>
                 </Grid>
             </FlipViewItem>
@@ -34,28 +34,28 @@
                         <Charting:ColumnSeries ItemsSource="{x:Bind ViewModel.diagramData}" Title="Második diagram adatai" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
                     </Charting:Chart>
                     <Border Background="#629FED" Height="60" VerticalAlignment="Bottom">
-                        <TextBlock Text="Ez lesz a 2. diagram címe!" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Termékek értéke kategóriánként" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
                     </Border>
                 </Grid>
             </FlipViewItem>
             <FlipViewItem>
                 <Grid>
                     <Charting:Chart x:Name="LineChart" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="60,60,60,65">
-                        <Charting:LineSeries ItemsSource="{x:Bind ViewModel.diagramData}" Title="Harmadik diagram adatai" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
+                        <Charting:LineSeries ItemsSource="{x:Bind ViewModel.diagramData2}" Title="Harmadik diagram adatai" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
                     </Charting:Chart>
                     <Border Background="#629FED" Height="60" VerticalAlignment="Bottom">
-                        <TextBlock Text="Ez lesz a 3. diagram címe!" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Termékek eladásainak megoszlása" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
                     </Border>
                 </Grid>
             </FlipViewItem>
             <FlipViewItem>
                 <Grid>
                     <Charting:Chart x:Name="BarChart" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="60,60,60,65">
-                        <Charting:BarSeries ItemsSource="{x:Bind ViewModel.diagramData}" Title="Negyedik diagram adatai " Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
+                        <Charting:BarSeries ItemsSource="{x:Bind ViewModel.diagramData2}" Title="Negyedik diagram adatai " Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
                     </Charting:Chart>
                    
                         <Border Background="#629FED" Height="60" VerticalAlignment="Bottom">
-                        <TextBlock Text="Ez lesz a 4. diagram címe!" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Ez a 4. diagram címe!" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
                         </Border>
                    
                 </Grid>
@@ -63,11 +63,11 @@
             <FlipViewItem>
                 <Grid>
                     <Charting:Chart x:Name="BubbleChart" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"  Margin="60,60,60,65">
-                        <Charting:BubbleSeries ItemsSource="{x:Bind ViewModel.diagramData}" Title="Ötödik diagram adatai" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
+                        <Charting:BubbleSeries ItemsSource="{x:Bind ViewModel.diagramData3}" Title="Ötödik diagram adatai" Margin="0" IndependentValuePath="Name" DependentValuePath="Sum" IsSelectionEnabled="True"/>
                 </Charting:Chart>
                     
                         <Border Background="#629FED" Height="60" VerticalAlignment="Bottom">
-                        <TextBlock Text="Ez lesz az 5. diagram címe!" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Ez az 5. diagram címe!" Foreground="White" Padding="12,12" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"/>
                         </Border>
                     
                 </Grid>

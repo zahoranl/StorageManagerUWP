@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
+using Windows.Data.Xml.Dom;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -60,7 +62,9 @@ namespace HF.ViewModels
             else
             {
                 _contentProviderApiService.setAsLoggedIn(loggedIn);
-                NavigationService.Navigate(typeof(Views.LogoutPage), 2);
+                dropNotification();
+                NavigationService.Navigate(typeof(Views.MainPage), 2);
+
             }
             
         }
@@ -78,6 +82,20 @@ namespace HF.ViewModels
         public void Reg()
         {
             NavigationService.Navigate(typeof(Views.RegistrationPage), 5);
+        }
+        private void dropNotification()
+        {
+            ToastTemplateType toastTemplate = ToastTemplateType.ToastImageAndText02;
+            XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
+            XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
+            toastTextElements[0].AppendChild(toastXml.CreateTextNode("Login"));
+            toastTextElements[1].AppendChild(toastXml.CreateTextNode(_contentProviderApiService.getLoggedInUser().Name+" logged in"));
+            XmlNodeList toastImageElements = toastXml.GetElementsByTagName("image");
+            IXmlNode toasNode = toastXml.SelectSingleNode("/toast");
+            ((XmlElement)toasNode).SetAttribute("duration", "long");
+
+            ToastNotification toast = new ToastNotification(toastXml);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
     }
 }
